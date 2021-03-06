@@ -1,20 +1,23 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import {
  View, TextInput, StyleSheet, Keyboard,
  } from 'react-native';
 
-import Appbar from '../components/Appbar';
 import CircleButton from '../components/CircleButton';
 import KeyboardSafeView from '../components/KeyboardSafeView';
 
-export default function MemoCreateScreen() {
+export default function MemoCreateScreen(props) {
+    const { navigation } = props;
     return (
       <KeyboardSafeView style={styles.container}>
-        <Appbar />
         <View style={styles.inputContainer}>
           <TextInput value="" multiline style={styles.input} onSubmitEditing={Keyboard.dismiss} />
         </View>
-        <CircleButton name="check" />
+        <CircleButton
+          name="check"
+          onPress={() => { navigation.goBack(); }}
+        />
       </KeyboardSafeView>
     );
 }

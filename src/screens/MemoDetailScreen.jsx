@@ -1,15 +1,15 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import {
  View, ScrollView, Text, StyleSheet,
 } from 'react-native';
 
-import Appbar from '../components/Appbar';
 import CircleButton from '../components/CircleButton';
 
-export default function MemoListScreen() {
+export default function MemoListScreen(props) {
+    const { navigation } = props;
     return (
       <View style={styles.container}>
-        <Appbar />
         <View style={styles.memoHeader}>
           <Text style={styles.memoTitle}>買い物リスト</Text>
           <Text style={styles.memoDate}>2020年12月24日 10:00</Text>
@@ -21,7 +21,11 @@ export default function MemoListScreen() {
             本文用なので使い方を間違えると不自然に見えることもあるので注意。
           </Text>
         </ScrollView>
-        <CircleButton style={{ top: 160, bottom: 'auto' }} name="edit-2" />
+        <CircleButton
+          style={{ top: 60, bottom: 'auto' }}
+          name="edit-2"
+          onPress={() => { navigation.navigate('MemoEdit'); }}
+        />
       </View>
     );
 }
