@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import {
  View, Text, TextInput, StyleSheet, TouchableOpacity,
 } from 'react-native';
@@ -8,12 +8,29 @@ import Button from '../components/Button';
 
 export default function LogInScreen(props) {
     const { navigation } = props;
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     return (
       <View style={styles.container}>
         <View style={styles.inner}>
           <Text style={styles.Title}>Log In</Text>
-          <TextInput style={styles.input} value="Email Address" />
-          <TextInput style={styles.input} value="Password" />
+          <TextInput
+            style={styles.input}
+            value={email}
+            onChangeText={(text) => { setEmail(text); }}
+            autoCapitalize="none"
+            keyboardType="email-address"
+            placeholder="Email Address"
+            textContentType="emailAddress"
+          />
+          <TextInput
+            style={styles.input}
+            value={password}
+            onChangeText={(text) => { setPassword(text); }}
+            autoCapitalize="none"
+            placeholder="Password"
+            secureTextEntry
+          />
           <Button
             label="Submit"
             onPress={() => {
@@ -25,14 +42,15 @@ export default function LogInScreen(props) {
           />
           <View style={styles.footer}>
             <Text style={styles.footerText}>Not registered?</Text>
-            <TouchableOpacity onPress={() => {
-              navigation.reset({
-                index: 0,
-                routes: [{ name: 'LogIn' }],
-              });
-            }}
+            <TouchableOpacity
+              onPress={() => {
+                navigation.reset({
+                  index: 0,
+                  routes: [{ name: 'SignUp' }],
+                });
+              }}
             >
-              <Text style={styles.footerLink}>Sign up here</Text>
+              <Text style={styles.footerLink}>Sign up here!</Text>
             </TouchableOpacity>
           </View>
         </View>

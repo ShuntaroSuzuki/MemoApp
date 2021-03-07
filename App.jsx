@@ -15,7 +15,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="LogIn"
+        initialRouteName="SignUp"
         screenOptions={{
           headerStyle: { backgroundColor: '#467FD3' },
           headerTitleStyle: { color: '#ffffff' },
@@ -39,7 +39,7 @@ export default function App() {
           }}
         />
         <Stack.Screen
-          name="SingUp"
+          name="SignUp"
           component={SignUpScreen}
           options={{
             cardStyleInterpolator: CardStyleInterpolators.forFadeFromBottomAndroid,
