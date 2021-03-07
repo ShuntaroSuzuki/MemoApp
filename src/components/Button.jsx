@@ -1,12 +1,12 @@
-import { func, string } from 'prop-types';
+import { func, shape, string } from 'prop-types';
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 export default function Button(props) {
     // eslint-disable-next-line react/prop-types
-    const { label, onPress } = props;
+    const { label, onPress, style } = props;
     return (
-      <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>
+      <TouchableOpacity style={[styles.buttonContainer, style]} onPress={onPress}>
         <Text style={styles.buttonLabel}>{label}</Text>
       </TouchableOpacity>
     );
@@ -15,10 +15,12 @@ export default function Button(props) {
 Button.propsType = {
     label: string.isRequired,
     onPress: func,
+    style: shape(),
 };
 
 Button.defaultProps = {
     onPress: null,
+    style: null,
 };
 
 const styles = StyleSheet.create({
