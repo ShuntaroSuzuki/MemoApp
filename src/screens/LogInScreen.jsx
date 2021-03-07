@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
  View, Text, TextInput, StyleSheet, TouchableOpacity, Alert,
 } from 'react-native';
@@ -11,6 +11,18 @@ export default function LogInScreen(props) {
     const { navigation } = props;
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    useEffect(() => {
+      const unsubscribed = firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          navigation.reset({
+            index: 0,
+            routes: [{ name: 'MemoList' }],
+          });
+        }
+      });
+      return unsubscribed;
+    }, []);
 
     function handlePress() {
       firebase.auth().signInWithEmailAndPassword(email, password)
